@@ -296,7 +296,7 @@
             // 
             // tmrUpdateTime
             // 
-            this.tmrUpdateTime.Interval = 37;
+            this.tmrUpdateTime.Interval = 31;
             this.tmrUpdateTime.Tick += new System.EventHandler(this.TmrUpdateTime_Tick);
             // 
             // FormCameraControlTool
