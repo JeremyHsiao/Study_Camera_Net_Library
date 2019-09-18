@@ -146,6 +146,8 @@ namespace CameraControlTool
             if (!cameraControl.CameraCreated)
                 return;
 
+            UpdateCameraBitmap();       // To update current date/time
+
             Bitmap bitmap = cameraControl.SnapshotOutputImage();
 
             if (bitmap == null)
@@ -235,6 +237,9 @@ namespace CameraControlTool
 
             cameraControl.OverlayBitmap = GenerateColorKeyBitmap(false);
 
+            // It could be better to enable it somewhere else
+            tmrUpdateTime.Enabled = true;
+
             #region D3D bitmap mixer
             //if (cameraControl.UseGDI)
             //{
@@ -322,8 +327,8 @@ namespace CameraControlTool
                 Font font = new Font("Tahoma", 16);
                 Brush textColorKeyed = new SolidBrush(Color.Yellow);
 
-                g.DrawString("Sample project for Camera_NET component", font, textColorKeyed, 4, h - 30);
-
+                //g.DrawString("Sample project for Camera_NET component", font, textColorKeyed, 4, h - 30);
+                g.DrawString(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff", System.Globalization.DateTimeFormatInfo.InvariantInfo), font, textColorKeyed, 4, h - 30);
             }
 
 
@@ -703,8 +708,11 @@ namespace CameraControlTool
             }
         }
 
-
-
+        private void TmrUpdateTime_Tick(object sender, EventArgs e)
+        {
+            //_bUpdateTime = true;
+            UpdateCameraBitmap();
+        }
 
     }
 }
