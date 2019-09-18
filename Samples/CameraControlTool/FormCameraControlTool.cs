@@ -50,6 +50,9 @@ namespace CameraControlTool
         private bool _bZoomed = false;
         private double _fZoomValue = 1.0;
 
+        // Bitmap Mixed time
+        private DateTime mixed_date_time;
+
         // Camera choice
         private CameraChoice _CameraChoice = new CameraChoice();
 
@@ -146,15 +149,16 @@ namespace CameraControlTool
             if (!cameraControl.CameraCreated)
                 return;
 
-            UpdateCameraBitmap();       // To update current date/time
-
             Bitmap bitmap = cameraControl.SnapshotOutputImage();
 
             if (bitmap == null)
                 return;
 
+            bitmap.Save(mixed_date_time.ToString("yyyyMMddHHmmssfff") + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
             pictureBoxScreenshot.Image = bitmap;
             pictureBoxScreenshot.Update();
+
         }
 
         private void buttonSnapshotNextSourceFrame_Click(object sender, EventArgs e)
@@ -232,8 +236,9 @@ namespace CameraControlTool
         // Generate bitmap for overlay
         private void UpdateCameraBitmap()
         {
+
             if (!cameraControl.MixerEnabled)
-                return;
+                return ;
 
             cameraControl.OverlayBitmap = GenerateColorKeyBitmap(false);
 
@@ -328,7 +333,8 @@ namespace CameraControlTool
                 Brush textColorKeyed = new SolidBrush(Color.Yellow);
 
                 //g.DrawString("Sample project for Camera_NET component", font, textColorKeyed, 4, h - 30);
-                g.DrawString(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff", System.Globalization.DateTimeFormatInfo.InvariantInfo), font, textColorKeyed, 4, h - 30);
+                mixed_date_time = DateTime.Now;
+                g.DrawString(mixed_date_time.ToString("yyyy/MM/dd HH:mm:ss.fff", System.Globalization.DateTimeFormatInfo.InvariantInfo), font, textColorKeyed, 4, h - 30);
             }
 
 
