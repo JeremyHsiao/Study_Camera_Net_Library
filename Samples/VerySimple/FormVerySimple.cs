@@ -54,9 +54,6 @@ namespace VerySimple
 
                 // Set selected camera to camera control with default resolution
                 cameraControl.SetCamera(camera_moniker, null);
-
-                //ResolutionList resolutions = Camera.GetResolutionList(cameraControl.Moniker);
-
             }
         }
 

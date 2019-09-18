@@ -34,18 +34,20 @@
             // cameraControl
             // 
             this.cameraControl.DirectShowLogFilepath = "";
+            this.cameraControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cameraControl.Location = new System.Drawing.Point(0, 0);
-            this.cameraControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cameraControl.Margin = new System.Windows.Forms.Padding(5);
             this.cameraControl.Name = "cameraControl";
-            this.cameraControl.Size = new System.Drawing.Size(1280, 768);
+            this.cameraControl.Size = new System.Drawing.Size(768, 542);
             this.cameraControl.TabIndex = 8;
             // 
             // FormVerySimple
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 771);
+            this.ClientSize = new System.Drawing.Size(768, 542);
             this.Controls.Add(this.cameraControl);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormVerySimple";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Very simple camera sample";
