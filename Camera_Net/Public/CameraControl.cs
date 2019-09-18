@@ -86,6 +86,21 @@ namespace Camera_NET
             {
                 _Camera.Resolution = resolution;
             }
+            else
+            {
+                // When there is no resolution has been specified, try to find the best one
+
+                ResolutionList resolution_list = Camera.GetResolutionList(moniker);
+
+                foreach (Resolution res in resolution_list)
+                {
+                    if(res.CompareTo(resolution)==1)       // update resolution whenever res is larger than resolution (null is the smallest)
+                    {
+                        resolution = res;
+                    }
+                }
+                _Camera.Resolution = resolution;
+            }
 
             // Initialize
             _Camera.Initialize(this, moniker);
